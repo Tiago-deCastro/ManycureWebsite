@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ManycureWebsite</title>
+    <title>Manycure</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
+    <!-- google and social media tags-->
+    <meta property="og:site_name" content="Manycure Official Site">
+    <meta property="og:title" content="Manycure Official Site">
+    <meta property="og:url" content="https://www.manycure.pt">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="The official website for Manycure, producer and DJ.">
+
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= javascript_pack_tag 'soundwaves', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
   <body>
