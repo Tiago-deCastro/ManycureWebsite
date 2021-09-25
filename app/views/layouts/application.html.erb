@@ -8,8 +8,19 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-TLQDMG5');</script>
-   <!-- End Google Tag Manager -->
+    <!-- End Google Tag Manager -->
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-72550066-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+     
+       gtag('config', 'UA-72550066-2');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
     <title>Manycure</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -34,6 +45,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLQDMG5"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class='container mx-3 my-3'>
