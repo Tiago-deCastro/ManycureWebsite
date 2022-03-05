@@ -1,113 +1,90 @@
 
 
 <div>
-  <body translate="no">
+  <body translate="yes">
     <div id='javaanimation'>
   
-      <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69d01441f36c0ea791ae2d4469f0f8ff5326f00ae2d00e4bb7d20e24edb.js"></script>
+
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
         <script id="rendered-js">
-          let size = 1600;
-          let yF = 15;
-          let xF = 30;
-          let yMag = size / yF * 0.7;
-          let p = 0;
-          let pF = 100;
-          let lines;
-          let moved = false;
+let size = 7000;
+let yF = 50;
+let xF = 10
+let yMag = size / yF * 0.5;
+let p = 0;
+let pF = 100;
+let lines;
 
-          function generateLines() {
-            let lines = [];
-            const yStep = size / yF;
-            const xStep = size / (xF - 1);
+function generateLines() {
+  let lines = [];
+  const yStep = size / yF;
+  const xStep = size / (xF - 1);
+
+  let center = size / 2;
+  let rMin = center * 0.5;
+  let rMax = center * 0.8;
+  let rMinSq = rMin * rMin;
+  let rMaxSq = rMax * rMax;
+  let d, dx, dy;
+
+  for (let r = 0; r < yF; r++) {
+    let y = (r + 0.5) * yStep;
+    let line = []
+    for (let c = 0; c < xF; c++) {
+      let h = (c === 0 || c == xF - 1) ? 0 : random(-yMag / 2, yMag / 2);
+      let x = c * xStep
+      dx = x - center;
+      dy = y - center;
+      d = dx * dx + dy * dy;
+
+      line.push({
+        x: x,
+        y: y,
+        h: h,
+        d: map(d, rMinSq, rMaxSq, 1, 0, true)
+      })
+    }
+    lines.push(line)
+  }
+  return lines
+}
+
+function setup() {
+  randomSeed(199);
+  createCanvas(size, size);
+  lines = generateLines();
+}
 
 
-            for (let r = 0; r < yF; r++) {if (window.CP.shouldStopExecution(0)) break;
-              let y = (r + 0.5) * yStep;
-              let line = [];
-              let p = random(0, pF);
-              for (let c = 0; c < xF; c++) {if (window.CP.shouldStopExecution(1)) break;
-                let h = c === 0 || c == xF - 1 ? 0 : random(-yMag / 2, yMag / 2);
-                let x = c * xStep;
+function draw() {
+  background(256);
+  p = (p + random(0, 10));
+  if (p >= pF) {
+    lines = generateLines()
+    p = 0;
+  }
+  let pN = cos(p / pF * PI);
 
-                line.push({
-                  x: x,
-                  y: y,
-                  h: h });
+  for (let r = 0; r < lines.length; r++) {
+    beginShape();
+    noFill();
+    //fill(0)
+    for (let c = 0; c < lines[r].length; c++) {
 
-              }window.CP.exitedLoop(1);
-              lines.push({ line, p });
-            }window.CP.exitedLoop(0);
-            return lines;
-          }
+      l = lines[r][c]
+      curveVertex(l.x, l.y + pN * l.h * l.d);
+      
+      let h = (c === 0 || c == lines[r].length - 1) ? 0 : random(-yMag / 2, yMag / 2);
+      l.h = l.h * 0.7 + h * 0.3
+    }
+    endShape();
+  }
+}
 
-          function setup() {
-            randomSeed(199);
-            createCanvas(size, size);
-            lines = generateLines();
-          }
-          function mouseMoved() {
-            moved = true;
-          }
-
-          function draw() {
-            background(256);
-
-            let center = size / 2;
-            let rMin = center * 0.1;
-            let rMax = center * 0.5;
-            let rMinSq = rMin * rMin;
-            let rMaxSq = rMax * rMax;
-            let d, dx, dy;
-
-            for (let r = 0; r < lines.length; r++) {if (window.CP.shouldStopExecution(2)) break;
-              let poly = lines[r].line;
-
-              lines[r].p = lines[r].p + random(0, 1);
-              if (lines[r].p >= pF) {
-                lines = generateLines();
-                lines[r].p = 0;
-              }
-              let pN = tan(sin(lines[r].p / pF * PI));
-
-              beginShape();
-              noFill();
-              //fill(0)
-              for (let c = 0; c < poly.length; c++) {if (window.CP.shouldStopExecution(3)) break;
-                l = poly[c];
-                dx = l.x - (moved ? mouseX : center);
-                dy = l.y - (moved ? mouseY : center);
-                d = dx * dx + dy * dy;
-                d = map(d, rMinSq, rMaxSq, 1, 0, true);
-
-                //curveVertex(l.x - 5, l.y + pN * l.h * d * 0.7);
-                vertex(l.x, l.y + pN * l.h * d);
-
-                if (l.h > 15 || l.h < -15) {
-                  circle(l.x, l.y + pN * l.h * d * 0.4, 1);
-                  circle(l.x, l.y, 1);
-                  line(l.x, l.y, l.x, l.y + pN * l.h * d * 1.2);
-                }
-                curveVertex(l.x, l.y + pN * l.h * d);
-
-                let h = c === 0 || c == lines[r].length - 1 ? 0 : random(-yMag / 2, yMag / 2);
-                l.h = l.h * 0.7 + h * 0.3;
-              }window.CP.exitedLoop(3);
-              endShape();
-            }window.CP.exitedLoop(2);
-          }
-  //# sourceURL=pen.js
         </script>
-
-    
-
-     <script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-4793b73c6332f7f14a9b6bba5d5e62748e9d1bd0b5c52d7af6376f3d1c625d7e.js"></script>
-
-
-
   
-      <main><canvas id="defaultCanvas0" class="p5Canvas" width="500" height="500" style="width: 500px; height: 500px;"></canvas></main>
+      <main><canvas id="defaultCanvas0" class="p5Canvas" width="1" height="1" style="width: 1px; height: 1px;"></canvas></main>
     </div>  
   </body>
 </div>
