@@ -2,89 +2,89 @@
 
 <div>
   <body translate="no">
-    <div id='javaanimation'>
+    <div class='col-sm-12' id='javaanimation'>
   
 
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
         <script id="rendered-js">
-let size = 3000;
-let yF = 50;
-let xF = 10
-let yMag = size / yF * 0.5;
-let p = 0;
-let pF = 100;
-let lines;
+            let size = 2000;
+            let yF = 50;
+            let xF = 10
+            let yMag = size / yF * 0.5;
+            let p = 0;
+            let pF = 100;
+            let lines;
 
-function generateLines() {
-  let lines = [];
-  const yStep = size / yF;
-  const xStep = size / (xF - 1);
+            function generateLines() {
+              let lines = [];
+              const yStep = size / yF;
+              const xStep = size / (xF - 1);
 
-  let center = size / 2;
-  let rMin = center * 0.5;
-  let rMax = center * 0.8;
-  let rMinSq = rMin * rMin;
-  let rMaxSq = rMax * rMax;
-  let d, dx, dy;
+              let center = size / 2;
+              let rMin = center * 0.5;
+              let rMax = center * 0.8;
+              let rMinSq = rMin * rMin;
+              let rMaxSq = rMax * rMax;
+              let d, dx, dy;
 
-  for (let r = 0; r < yF; r++) {
-    let y = (r + 0.5) * yStep;
-    let line = []
-    for (let c = 0; c < xF; c++) {
-      let h = (c === 0 || c == xF - 1) ? 0 : random(-yMag / 2, yMag / 2);
-      let x = c * xStep
-      dx = x - center;
-      dy = y - center;
-      d = dx * dx + dy * dy;
+              for (let r = 0; r < yF; r++) {
+                let y = (r + 0.5) * yStep;
+                let line = []
+                for (let c = 0; c < xF; c++) {
+                  let h = (c === 0 || c == xF - 1) ? 0 : random(-yMag / 2, yMag / 2);
+                  let x = c * xStep
+                  dx = x - center;
+                  dy = y - center;
+                  d = dx * dx + dy * dy;
 
-      line.push({
-        x: x,
-        y: y,
-        h: h,
-        d: map(d, rMinSq, rMaxSq, 1, 0, true)
-      })
-    }
-    lines.push(line)
-  }
-  return lines
-}
+                  line.push({
+                    x: x,
+                    y: y,
+                    h: h,
+                    d: map(d, rMinSq, rMaxSq, 1, 0, true)
+                  })
+                }
+                lines.push(line)
+              }
+              return lines
+            }
 
-function setup() {
-  randomSeed(199);
-  createCanvas(size, size);
-  lines = generateLines();
-}
+            function setup() {
+              randomSeed(199);
+              createCanvas(size, size);
+              lines = generateLines();
+            }
 
 
-function draw() {
-  background(256);
-  p = (p + random(0, 10));
-  if (p >= pF) {
-    lines = generateLines()
-    p = 0;
-  }
-  let pN = cos(p / pF * PI);
+            function draw() {
+              background(256);
+              p = (p + random(0, 10));
+              if (p >= pF) {
+                lines = generateLines()
+                p = 0;
+              }
+              let pN = cos(p / pF * PI);
 
-  for (let r = 0; r < lines.length; r++) {
-    beginShape();
-    noFill();
-    //fill(0)
-    for (let c = 0; c < lines[r].length; c++) {
+              for (let r = 0; r < lines.length; r++) {
+                beginShape();
+                noFill();
+                //fill(0)
+                for (let c = 0; c < lines[r].length; c++) {
 
-      l = lines[r][c]
-      curveVertex(l.x, l.y + pN * l.h * l.d);
-      
-      let h = (c === 0 || c == lines[r].length - 1) ? 0 : random(-yMag / 2, yMag / 2);
-      l.h = l.h * 0.7 + h * 0.3
-    }
-    endShape();
-  }
-}
+                  l = lines[r][c]
+                  curveVertex(l.x, l.y + pN * l.h * l.d);
+                  
+                  let h = (c === 0 || c == lines[r].length - 1) ? 0 : random(-yMag / 2, yMag / 2);
+                  l.h = l.h * 0.7 + h * 0.3
+                }
+                endShape();
+              }
+            }
 
         </script>
   
-      <main><canvas id="defaultCanvas0" class="p5Canvas" width="1" height="1" style="width: 1px; height: 1px;"></canvas></main>
+      <main><canvas id="defaultCanvas0" class="p5Canvas" width="1" height="1" style="width: 1px; height: 1px; margin: 0;"></canvas></main>
     </div>  
   </body>
 </div>

@@ -3,6 +3,7 @@
   margin-right: 0px;
   border-collapse: collapse;
   width: 100%;
+  max-width: 100%;
 }
 
 .container-table {
@@ -14,10 +15,9 @@
 
 td {
 
-  padding: 0;
+  padding: 0px;
   margin: 0px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: auto;
 }
 
 td div {
@@ -26,4 +26,10 @@ td div {
   height: auto;
   min-height: 20px;
   min-width: 20px;
+}
+
+@media(max-width: 500px){
+  .event {
+    display: none;
+  }
 }
