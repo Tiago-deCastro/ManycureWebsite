@@ -16,7 +16,8 @@ td {
 
   padding: 0;
   margin: 0px;
-  overflow: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 td div {
