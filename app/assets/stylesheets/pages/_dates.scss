@@ -6,9 +6,8 @@
   max-width: 100%;
 }
 
-.container-table {
-  padding-left: 5%;
-  padding-right: 5%;
+.tabledates {
+  margin: $spacer;
   max-width: 100%;
 }
 
@@ -64,5 +63,9 @@ td div {
   .vldesktop{
     display: none;
   }
+
+  .tabledates {
+    margin: 0;
+  }  
 
 }
