@@ -16,6 +16,12 @@
   color: darkgray;
 }
 
+.venuelocation {
+  text-align: center;
+  justify-content: center;
+  display: none;
+}
+
 
 td {
 
@@ -23,9 +29,13 @@ td {
   margin: 0px;
   justify-content: center;
   overflow: auto;
+  text-align: center;
+  justify-content: center;
+  
 }
 
 th {
+  text-align: center;
   justify-content: center;
 }
 
@@ -42,14 +52,17 @@ td div {
     display: none;
   }
 
-  td {
+}
+
+@media(max-width: 600px){
+  .venuelocation {
+    display: block;
     text-align: center;
     justify-content: center;
   }
 
-  th {
-    text-align: center;
-    justify-content: center;
+  .vldesktop{
+    display: none;
   }
 
 }
