@@ -30,7 +30,7 @@ td {
   overflow: auto;
   text-align: center;
   justify-content: center;
-  
+
 }
 
 th {
@@ -54,18 +54,20 @@ td div {
 }
 
 @media(max-width: 600px){
+
+  
   .venuelocation {
     display: block;
     text-align: center;
     justify-content: center;
   }
-
+  
   .vldesktop{
     display: none;
   }
-
+  
   .tabledates {
     margin: 0;
   }  
-
+  
 }
