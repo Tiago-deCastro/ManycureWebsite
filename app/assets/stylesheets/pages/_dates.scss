@@ -46,15 +46,18 @@ td div {
   min-width: 20px;
 }
 
-@media(max-width: 1024px){
+@media(max-width: 1194px){
   .event {
     display: none;
   }
 
 }
 
-@media(max-width: 600px){
+@media(max-width: 644px){
 
+  td {
+    font-size: 14px;
+  }
   
   .venuelocation {
     display: block;
@@ -69,5 +72,14 @@ td div {
   .tabledates {
     margin: 0;
   }  
+  
+}
+
+@media(max-width: 468px){
+
+  td {
+    font-size: 10px;
+  }
+  
   
 }
